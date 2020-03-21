@@ -1,0 +1,2 @@
+INSERT INTO reviews (author, game, text, rating, createdAt, updatedAt) VALUES ("John Smith", "Animal Crossing", "I like how you can just play this game casually", 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO reviews (author, game, text, rating, createdAt, updatedAt) VALUES ("Betty Jo", "Doom", "Who doesnt love to kill demons? 10/10 Very gruesome", 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
