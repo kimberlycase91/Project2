@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="jumbotron">
+    <div id="gameImage"></div>
+    <h1 id="gameTitle"></h1>
+    <h6 id="gameSummary"></h6>
+    <br><br>
+    <a href="/" id="home">← Back To Home</a>
+  </div>
+</div>
+
+<div class="container">
+  <form class="clearfix mb-4" action="POST">
+    <div class="form-group">
+      <label for="author">Reviewer</label>
+      <input type="text" id="author" class="form-control" placeholder="Reviewer Name">
+    </div>
+    <div class="form-group">
+      <label for="reviewText">Review</label>
+      <textarea class="form-control" id="reviewText" aria-describedby="reviewText" placeholder="Review"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <select class="form-control" id="rating">
+        <option default>Default select</option>
+
+        <option value="1">
+          1
+        </option>
+        <option value="2">
+          2
+        </option>
+        <option value="3">
+          3
+        </option>
+        <option value="4">
+          4
+        </option>
+        <option value="5">
+          5
+        </option>
+      </select>
+    </div>
+    <button id="submit" class="btn btn-primary float-right">Submit</button>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row" id="reviewCards">
+
+  </div>
+</div>
