@@ -103,14 +103,18 @@ $(document).ready(function () {
   var $submit = $("#submit");
   var $results = $("#resultBox");
   var $gameInfo = $("#gameInfo");
-  var APIkey = "0c95b8af9amshc7c1d9d6af83ea3p12fefbjsn5bf38f4be1cc" //put this string in .env as APIkey="278971f36b31bc8cf08118637d493047289c1aaa" then change the value here to process.env.APIkey
 
-
-  $("#submit").on("click", function () {
+  $("#submit").on("click", function() {
     event.preventDefault();
+    $results.empty();
     console.log("searching for game...");
     console.log($("#game-input").val());
-    var gameSearch = $("#game-input").val().trim();
+    //take in game search and change to lower case and replace spaces with '-'
+    var gameSearch = $("#game-input").val()
+    gameSearch = gameSearch.toLowerCase();
+    gameSearch = gameSearch.replace(/[^a-zA-Z0-9 ]+/g, "");
+    gameSearch = gameSearch.replace(/\s+/g, "-");
+
     var API_URL = "https://api.rawg.io/api/games/" + gameSearch;
     var settings = {
       "async": true,
@@ -119,15 +123,16 @@ $(document).ready(function () {
       "method": "GET",
     };
     console.log(API_URL);
-    $.ajax(settings).done(function (response) {
+    $.ajax(settings).done(function(response) {
       console.log(response);
       console.log(response.name);
       var newResult = $("<div>");
-      var gameName = $("<h3>");
+      var gameName = $("<a>");
       gameName.text(response.name);
+      gameName.attr("href", "/game/" + response.id);
       newResult.append(gameName);
-      var gameSummary = $("<div>");
-      gameSummary.text(response.description);
+      var gameSummary = $("<p>");
+      gameSummary.append(response.description);
       newResult.append(gameSummary);
       $results.append(newResult);
     });
