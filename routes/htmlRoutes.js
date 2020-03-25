@@ -3,11 +3,8 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Review.findAll({}).then(function(dbReviews) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbReviews
-      });
+    res.render("index", {
+      msg: "Welcome!"
     });
   });
 
