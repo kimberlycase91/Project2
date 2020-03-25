@@ -8,6 +8,17 @@ module.exports = function(app) {
     });
   });
 
+  //Get one example
+  app.get("/api/game/:id", function(req, res) {
+    db.Review.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbReview) {
+      res.json(dbReview);
+    });
+  });
+
   // Create a new example
   app.post("/api/game", function(req, res) {
     db.Review.create(req.body).then(function(dbReview) {
@@ -17,7 +28,9 @@ module.exports = function(app) {
 
   // Delete an example by id
   app.delete("/api/game/:id", function(req, res) {
-    db.Review.destroy({ where: { id: req.params.id } }).then(function(dbReview) {
+    db.Review.destroy({
+      where: { id: req.params.id }
+    }).then(function(dbReview) {
       res.json(dbReview);
     });
   });

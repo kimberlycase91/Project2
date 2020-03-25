@@ -6,7 +6,7 @@ $(document).ready(function() {
   var reviewList = $("#reviews");
   // Add event listeners to the submit and delete buttons
   submitBtn.on("click", handleFormSubmit);
-  $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
+  // $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
 
   // The API object contains methods for each kind of request we'll make
   var API = {
@@ -62,6 +62,7 @@ $(document).ready(function() {
       reviewList.empty();
       reviewList.append(reviews);
     });
+  };
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
   var handleFormSubmit = function(event) {
@@ -113,7 +114,7 @@ $(document).ready(function() {
   $.ajax({
     url: API_URL + gameName,
     conentType: "application/json",
-    dataType: "json",
+    dataType: "jsonp",
       success: function (data) {
         console.log(data);
         for (var i=0; i < data.results.length; i++) {

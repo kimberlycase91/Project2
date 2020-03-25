@@ -3,17 +3,16 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Review.findAll({}).then(function(dbReviews) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbReviews
-      });
+    res.render("index", {
+      msg: "Welcome!"
     });
   });
 
   // Load example page and pass in an example by id
   app.get("/game/:id", function(req, res) {
-    db.Review.findOne({ where: { id: req.params.id } }).then(function(dbReview) {
+    db.Review.findOne({
+      where: { id: req.params.id }
+    }).then(function(dbReview) {
       res.render("example", {
         example: dbReview
       });
