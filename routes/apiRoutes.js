@@ -2,17 +2,19 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/game", function(req, res) {
+  console.log(db);
+
+  app.get("/api/review", function(req, res) {
     db.Review.findAll({}).then(function(dbReview) {
       res.json(dbReview);
     });
   });
 
   //Get one example
-  app.get("/api/game/:id", function(req, res) {
-    db.Review.findOne({
+  app.get("/api/review/:game", function(req, res) {
+    db.Review.findAll({
       where: {
-        id: req.params.id
+        game: req.params.game
       }
     }).then(function(dbReview) {
       res.json(dbReview);
@@ -20,14 +22,15 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/api/game", function(req, res) {
+  app.post("/game/api/review", function(req, res) {
     db.Review.create(req.body).then(function(dbReview) {
+      console.log("post api routes working?");
       res.json(dbReview);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/game/:id", function(req, res) {
+  app.delete("/api/review/:id", function(req, res) {
     db.Review.destroy({
       where: { id: req.params.id }
     }).then(function(dbReview) {
