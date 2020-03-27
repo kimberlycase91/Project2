@@ -10,15 +10,31 @@ module.exports = function(app) {
 
   // Load example page and pass in an example by id
   app.get("/game/:id", function(req, res) {
-    // db.Review.findOne({ where: { game: req.params.id } }).then(function(dbReview) {
-    res.render("game", {
-      // });
+
+    var gameSearch = $(this).data("id");
+    console.log(gameSearch);
+    var API_URL = "https://api.rawg.io/api/games/" + gameSearch;
+    console.log(API_URL);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": API_URL,
+      "method": "GET",
+    };
+    $.ajax(settings).done(function(response) {
+      res.render("game", {
+        gameTitle: response.name,
+        gameSummary: response.description,
+        gameImage: response.background_image,
+        gameID: response.id
+      });
     });
+
+    // res.render("game", {});
   });
 
-
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.render("404");
   });
 };
