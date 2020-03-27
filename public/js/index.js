@@ -6,13 +6,15 @@ $(document).ready(function () {
   var rating = $("#rating");
   var reviewList = $("#reviews");
   // Add event listeners to the submit and delete buttons
+  var gameInfo = {};
+  var gameDataId;
 
-  var handleFormSubmit = function(event) {
+  var handleFormSubmit = function (event) {
     event.preventDefault();
     console.log("Work plz?");
-    var gameInfo = {
+    gameInfo = {
       author: author.val().trim(),
-      game: 2454,
+      game: $("#apiNum").data("id"),
       text: reviewText.val().trim(),
       rating: rating.val()
     };
@@ -22,13 +24,14 @@ $(document).ready(function () {
       return;
     }
     console.log(gameInfo);
-    API.postReview(gameInfo).then(function() {
-      refreshReviews();
+    API.postReview(gameInfo).then(function () {
+      // refreshReviews();
+      console.log("Done");
     });
     console.log(gameInfo);
     author.val("");
     reviewText.val("");
-    rating.val("");
+    rating.val("default");
   };
 
   submitBtn.on("click", handleFormSubmit);
@@ -36,7 +39,7 @@ $(document).ready(function () {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postReview: function(gameInfo) {
+    postReview: function (gameInfo) {
       console.log("Hello!");
       return $.ajax({
         headers: {
@@ -47,13 +50,13 @@ $(document).ready(function () {
         data: JSON.stringify(gameInfo)
       });
     },
-    getReview: function() {
+    getReview: function () {
       return $.ajax({
         url: "api/review",
         type: "GET"
       });
     },
-    deleteReview: function(id) {
+    deleteReview: function (id) {
       return $.ajax({
         url: "api/review/" + id,
         type: "DELETE"
@@ -92,7 +95,7 @@ $(document).ready(function () {
   };
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
-  
+
 
   // handleDeleteBtnClick is called when an example's delete button is clicked
   // Remove the example from the db and refresh the list
@@ -110,7 +113,7 @@ $(document).ready(function () {
   var $results = $("#resultBox");
   var $gameInfo = $("#gameInfo");
 
-  $("#submit").on("click", function() {
+  $("#submit").on("click", function () {
     event.preventDefault();
     $results.empty();
     console.log("searching for game...");
@@ -136,11 +139,32 @@ $(document).ready(function () {
       var gameName = $("<a>");
       gameName.text(response.name);
       gameName.attr("href", "/game/" + response.id);
+      gameName.attr("data-id", response.id);
+      gameName.attr("id", "apiNum");
       newResult.append(gameName);
       var gameDescription = $("<p>");
       gameDescription.append(response.description);
       newResult.append(gameDescription);
       $results.append(newResult);
     });
+
   });
+
+  $(document).on("click", "#apiNum", function(){
+    // event.preventDefault();
+    var gameSearch = $(this).data("id");
+    gameDataId = gameSearch;
+    console.log(gameSearch);
+    var API_URL = "https://api.rawg.io/api/games/" + gameSearch;
+    console.log(API_URL);
+    // var settings = {
+    //   "async": true,
+    //   "crossDomain": true,
+    //   "url": API_URL,
+    //   "method": "GET",
+    // };
+    // $.ajax(settings).done(function (response) {
+
+    // });
+  })
 });
