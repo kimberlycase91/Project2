@@ -5,12 +5,13 @@ $(document).ready(function () {
   var submitBtn = $("#submitReview");
   var rating = $("#rating");
   var reviewList = $("#reviews");
+  var gameInfo = {};
   // Add event listeners to the submit and delete buttons
 
   var handleFormSubmit = function(event) {
     event.preventDefault();
     console.log("Work plz?");
-    var gameInfo = {
+    gameInfo = {
       author: author.val().trim(),
       game: 2454,
       text: reviewText.val().trim(),
