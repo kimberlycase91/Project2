@@ -12,9 +12,9 @@ $(document).ready(function () {
     console.log("Work plz?");
     var gameInfo = {
       author: author.val().trim(),
-      game: req.params.id,
+      game: 2454,
       text: reviewText.val().trim(),
-      rating: rating.val().trim()
+      rating: rating.val()
     };
 
     if (!(author && reviewText && rating)) {
@@ -30,7 +30,7 @@ $(document).ready(function () {
     reviewText.val("");
     rating.val("");
   };
-  
+
   submitBtn.on("click", handleFormSubmit);
   // $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
 

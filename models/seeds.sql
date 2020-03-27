@@ -1,2 +1,2 @@
-INSERT INTO reviews (author, game, text, rating, createdAt, updatedAt) VALUES ("John Smith", 54346, "I like how you can just play this game casually", 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-INSERT INTO reviews (author, game, text, rating, createdAt, updatedAt) VALUES ("Betty Jo", 2454, "Who doesnt love to kill demons? 10/10 Very gruesome", 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+INSERT INTO Review (author, game, text, rating, createdAt, updatedAt) VALUES ("John Smith", 54346, "I like how you can just play this game casually", 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Review (author, game, text, rating, createdAt, updatedAt) VALUES ("Betty Jo", 2454, "Who doesnt love to kill demons? 10/10 Very gruesome", 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)

@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all examples
   console.log(db);
-  
+
   app.get("/api/review", function(req, res) {
     db.Review.findAll({}).then(function(dbReview) {
       res.json(dbReview);
@@ -22,7 +22,7 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/api/review", function(req, res) {
+  app.post("/game/api/review", function(req, res) {
     db.Review.create(req.body).then(function(dbReview) {
       console.log("post api routes working?");
       res.json(dbReview);
