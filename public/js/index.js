@@ -1,32 +1,59 @@
 $(document).ready(function () {
   // Get references to page elements
-  var gameTitle = $("#gameTitle");
-  var gameSummary = $("#gameSummary");
-  var submitBtn = $("#submit");
+  var author = $("#author");
+  var reviewText = $("#reviewText");
+  var submitBtn = $("#submitReview");
+  var rating = $("#rating");
   var reviewList = $("#reviews");
   // Add event listeners to the submit and delete buttons
+
+  var handleFormSubmit = function(event) {
+    event.preventDefault();
+    console.log("Work plz?");
+    var gameInfo = {
+      author: author.val().trim(),
+      game: req.params.id,
+      text: reviewText.val().trim(),
+      rating: rating.val().trim()
+    };
+
+    if (!(author && reviewText && rating)) {
+      alert("You must enter an example text and description!");
+      return;
+    }
+    console.log(gameInfo);
+    API.postReview(gameInfo).then(function() {
+      refreshReviews();
+    });
+    console.log(gameInfo);
+    author.val("");
+    reviewText.val("");
+    rating.val("");
+  };
+  
   submitBtn.on("click", handleFormSubmit);
   // $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postReview: function () {
+    postReview: function(gameInfo) {
+      console.log("Hello!");
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
         },
         type: "POST",
         url: "api/review",
-        data: JSON.stringify()
+        data: JSON.stringify(gameInfo)
       });
     },
-    getReview: function () {
+    getReview: function() {
       return $.ajax({
         url: "api/review",
         type: "GET"
       });
     },
-    deleteReview: function (id) {
+    deleteReview: function(id) {
       return $.ajax({
         url: "api/review/" + id,
         type: "DELETE"
@@ -65,28 +92,7 @@ $(document).ready(function () {
   };
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
-  var handleFormSubmit = function (event) {
-    event.preventDefault();
-
-    var gameInfo = {
-      text: gameTitle.val().trim(),
-      description: gameSummary.val().trim(),
-      image: gameImage.val().trim()
-    };
-
-    if (!(gameTitle.text && gameSummary.description)) {
-      alert("You must enter an example text and description!");
-      return;
-    }
-
-    API.postReview(example).then(function () {
-      refreshReviews();
-    });
-
-    gameTitle.val("");
-    gameSummary.val("");
-    gameImage.val("");
-  };
+  
 
   // handleDeleteBtnClick is called when an example's delete button is clicked
   // Remove the example from the db and refresh the list
@@ -131,9 +137,9 @@ $(document).ready(function () {
       gameName.text(response.name);
       gameName.attr("href", "/game/" + response.id);
       newResult.append(gameName);
-      var gameSummary = $("<p>");
-      gameSummary.append(response.description);
-      newResult.append(gameSummary);
+      var gameDescription = $("<p>");
+      gameDescription.append(response.description);
+      newResult.append(gameDescription);
       $results.append(newResult);
     });
   });
