@@ -1,32 +1,102 @@
-<div id="home">
-  <div class="container">
-    <div class="jumbotron">
-      <h1 id="webTitle">Critical Hit</h1>
+<div class="navbar-fixed">
+  <nav class="nav-extended" id="navbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo center">Critical Hit</a>
+    </div>
+    <div class="nav-content" id="navbarcontent">
+      <ul class="tabs tabs-transparent tabs-fixed-width" id="tabs">
+
+        <li class="tab"><a class="active" href="#test2">Game Search</a></li>
+        <li class="tab"><a href="#reviewTab">Review</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div id="test2" class="col s12">
+  <div id="home">
+    <div class="container">
+
       <h6 id="webSynopsis">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat.
+        Welcome to our page!<br>
+        Simply search a game and leave a review!<br>
+        To view and submit reviews, simply move over to the review tab after clicking a search result!
       </h6>
 
       <br><br>
 
 
+
     </div>
-  </div>
-  <div class="container">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Game Search" aria-label="Recipient's username"
-        aria-describedby="button-addon2" id="game-input">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="submit">Submit</button>
+    <div class="container">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Game Search" aria-label="Recipient's username"
+          aria-describedby="button-addon2" id="game-input">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="submit">Submit</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="container" id="resultBox">
+    <div class="container" id="resultBox">
 
+    </div>
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<div id="reviewTab" class="col s12">
+  <div class="container">
+    <div class="jumbotron">
+      <div id="gameImage"></div>
+      <h1 id="gameTitle"></h1>
+      <h6 id="gameSummary"></h6>
+      <br><br>
+    </div>
+  </div>
+  <div class="container">
+    {{{gameData}}}
+  </div>
+  <div class="container">
+    <form class="clearfix mb-4" action="POST">
+      <div class="form-group">
+        <label for="author">Reviewer</label>
+        <input type="text" id="author" class="form-control" placeholder="Reviewer Name">
+      </div>
+      <div class="form-group">
+        <label for="reviewText">Review</label>
+        <textarea class="form-control" id="reviewText" aria-describedby="reviewText" placeholder="Review"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <select class="form-control" id="rating">
+          <option default>Default select</option>
+
+          <option value="1">
+            1
+          </option>
+          <option value="2">
+            2
+          </option>
+          <option value="3">
+            3
+          </option>
+          <option value="4">
+            4
+          </option>
+          <option value="5">
+            5
+          </option>
+        </select>
+      </div>
+      <button id="submitReview" class="btn btn-primary float-right">Submit</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <div class="row" id="reviewCards">
+
+    </div>
+  </div>
+</div>
+
+
