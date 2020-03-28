@@ -22,7 +22,7 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/game/api/review", function(req, res) {
+  app.post("/api/review", function(req, res) {
     db.Review.create(req.body).then(function(dbReview) {
       console.log("post api routes working?");
       res.json(dbReview);

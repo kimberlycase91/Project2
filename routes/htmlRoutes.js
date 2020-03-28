@@ -9,12 +9,12 @@ module.exports = function(app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/game/:id", function(req, res) {
-    // db.Review.findOne({ where: { game: req.params.id } }).then(function(dbReview) {
-      res.render("game", {
-      // });
-    });
-  });
+  // app.get("/game/:id", function(req, res) {
+  //   // db.Review.findOne({ where: { game: req.params.id } }).then(function(dbReview) {
+  //     res.render("game", {
+  //     // });
+  //   });
+  // });
 
 
   // Render 404 page for any unmatched routes
