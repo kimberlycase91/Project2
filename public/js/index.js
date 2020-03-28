@@ -5,8 +5,12 @@ $(document).ready(function() {
   var submitBtn = $("#submitReview");
   var rating = $("#rating");
   var reviewList = $("#reviews");
+  var gameInfo = {};
   // Add event listeners to the submit and delete buttons
+  var gameInfo = {};
+  var gameDataId;
 
+<<<<<<< HEAD
   // var handleFormSubmit = function (event) {
   //   event.preventDefault();
   //   console.log("Work plz?");
@@ -30,6 +34,32 @@ $(document).ready(function() {
   //   reviewText.val("");
   //   rating.val("");
   // };
+=======
+  var handleFormSubmit = function (event) {
+    event.preventDefault();
+    console.log("Work plz?");
+    gameInfo = {
+      author: author.val().trim(),
+      game: $("#apiNum").data("id"),
+      text: reviewText.val().trim(),
+      rating: rating.val()
+    };
+
+    if (!(author && reviewText && rating)) {
+      alert("You must enter an example text and description!");
+      return;
+    }
+    console.log(gameInfo);
+    API.postReview(gameInfo).then(function () {
+      // refreshReviews();
+      console.log("Done");
+    });
+    console.log(gameInfo);
+    author.val("");
+    reviewText.val("");
+    rating.val("default");
+  };
+>>>>>>> fd84d2c4e4be8d5ff6eea514aae260aacb2258d4
 
   // submitBtn.on("click", handleFormSubmit);
   // $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
@@ -144,6 +174,7 @@ $(document).ready(function() {
       newResult.append(gameDescription);
       $results.append(newResult);
     });
+
   });
 
   var clickSearch = [];
