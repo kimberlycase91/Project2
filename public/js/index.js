@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-var gameInfoID = $("gameID").data("id");
-
-$(document).ready(function () {
-=======
 $(document).ready(function() {
->>>>>>> 0f8a53475023a601d433e1891aee17f19f1540cd
   // Get references to page elements
   var author = $("#author");
   var reviewText = $("#reviewText");
@@ -16,7 +10,6 @@ $(document).ready(function() {
   var gameInfo = {};
   var gameDataId;
 
-<<<<<<< HEAD
   // var handleFormSubmit = function (event) {
   //   event.preventDefault();
   //   console.log("Work plz?");
@@ -40,20 +33,13 @@ $(document).ready(function() {
   //   reviewText.val("");
   //   rating.val("");
   // };
-=======
+
   var handleFormSubmit = function (event) {
     event.preventDefault();
     console.log("Work plz?");
-<<<<<<< HEAD
-    var gameInfo = {};
-    gameInfo = {
-      author: author.val().trim(),
-      game: gameInfoID,
-=======
     gameInfo = {
       author: author.val().trim(),
       game: $("#apiNum").data("id"),
->>>>>>> 0f8a53475023a601d433e1891aee17f19f1540cd
       text: reviewText.val().trim(),
       rating: rating.val()
     };
@@ -72,18 +58,13 @@ $(document).ready(function() {
     reviewText.val("");
     rating.val("default");
   };
->>>>>>> fd84d2c4e4be8d5ff6eea514aae260aacb2258d4
 
   // submitBtn.on("click", handleFormSubmit);
   // $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-<<<<<<< HEAD
-    postReview: function() {
-=======
     postReview: function (gameInfo) {
->>>>>>> 0f8a53475023a601d433e1891aee17f19f1540cd
       console.log("Hello!");
       return $.ajax({
         headers: {
@@ -183,13 +164,8 @@ $(document).ready(function() {
       var gameName = $("<a>");
       gameName.text(response.name);
       gameName.attr("href", "/game/" + response.id);
-<<<<<<< HEAD
-      gameName.data("id", response.id);
-      gameName.attr("id", "gameID");
-=======
       gameName.attr("data-id", response.id);
       gameName.attr("id", "apiNum");
->>>>>>> 0f8a53475023a601d433e1891aee17f19f1540cd
       newResult.append(gameName);
       var gameDescription = $("<p>");
       gameDescription.append(response.description);
@@ -249,28 +225,6 @@ $(document).ready(function() {
     loadReview();
   });
 
-<<<<<<< HEAD
-  $("#gameID").on("click", function() {
-    event.preventDefault();
-    $results.empty();
-    console.log("loading game info");
-    gameID = $("gameID").data("id");
-    console.log($("#game-input").val());
-    //take in game search and change to lower case and replace spaces with '-'
-    
-    var API_URL = "https://api.rawg.io/api/games/" + gameID;
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": API_URL,
-      "method": "GET",
-    };
-    console.log(API_URL);
-    $.ajax(settings).done(function(response) {
-      console.log(response);
-    });
-  });
-=======
   var handleFormSubmit = function(event) {
     event.preventDefault();
     console.log(clickSearch);
@@ -297,5 +251,4 @@ $(document).ready(function() {
   };
 
   submitBtn.on("click", handleFormSubmit);
->>>>>>> 0f8a53475023a601d433e1891aee17f19f1540cd
 });
