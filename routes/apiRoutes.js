@@ -25,6 +25,7 @@ module.exports = function(app) {
   app.post("/api/review", function(req, res) {
     db.Review.create(req.body).then(function(dbReview) {
       console.log("post api routes working?");
+      console.log(req.body);
       res.json(dbReview);
     });
   });

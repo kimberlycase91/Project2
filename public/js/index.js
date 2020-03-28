@@ -72,7 +72,7 @@ $(document).ready(function() {
         },
         type: "POST",
         url: "api/review",
-        data: JSON.stringify()
+        data: JSON.stringify(gameInfo)
       });
     },
     getReview: function () {
