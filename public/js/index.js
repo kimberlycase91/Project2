@@ -1,3 +1,5 @@
+var gameInfoID = $("gameID").data("id");
+
 $(document).ready(function () {
   // Get references to page elements
   var author = $("#author");
@@ -10,9 +12,10 @@ $(document).ready(function () {
   var handleFormSubmit = function(event) {
     event.preventDefault();
     console.log("Work plz?");
-    var gameInfo = {
+    var gameInfo = {};
+    gameInfo = {
       author: author.val().trim(),
-      game: 2454,
+      game: gameInfoID,
       text: reviewText.val().trim(),
       rating: rating.val()
     };
@@ -36,7 +39,7 @@ $(document).ready(function () {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    postReview: function(gameInfo) {
+    postReview: function() {
       console.log("Hello!");
       return $.ajax({
         headers: {
@@ -44,7 +47,7 @@ $(document).ready(function () {
         },
         type: "POST",
         url: "api/review",
-        data: JSON.stringify(gameInfo)
+        data: JSON.stringify()
       });
     },
     getReview: function() {
@@ -136,11 +139,34 @@ $(document).ready(function () {
       var gameName = $("<a>");
       gameName.text(response.name);
       gameName.attr("href", "/game/" + response.id);
+      gameName.data("id", response.id);
+      gameName.attr("id", "gameID");
       newResult.append(gameName);
       var gameDescription = $("<p>");
       gameDescription.append(response.description);
       newResult.append(gameDescription);
       $results.append(newResult);
+    });
+  });
+
+  $("#gameID").on("click", function() {
+    event.preventDefault();
+    $results.empty();
+    console.log("loading game info");
+    gameID = $("gameID").data("id");
+    console.log($("#game-input").val());
+    //take in game search and change to lower case and replace spaces with '-'
+    
+    var API_URL = "https://api.rawg.io/api/games/" + gameID;
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": API_URL,
+      "method": "GET",
+    };
+    console.log(API_URL);
+    $.ajax(settings).done(function(response) {
+      console.log(response);
     });
   });
 });
