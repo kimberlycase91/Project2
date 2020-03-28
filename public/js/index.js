@@ -136,6 +136,8 @@ $(document).ready(function () {
       var gameName = $("<a>");
       gameName.text(response.name);
       gameName.attr("href", "/game/" + response.id);
+      gameName.attr("data-id", response.id);
+      gameName.attr("id", "apiNum");
       newResult.append(gameName);
       var gameDescription = $("<p>");
       gameDescription.append(response.description);
