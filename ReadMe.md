@@ -24,7 +24,7 @@ _node server.js_
 * Don't worry about an API key for this website as the API key is open and everyone can use it.
 
 ### Getting started- Heroku
-* Heroku link: 
+* Heroku link: https://lit-retreat-22864.herokuapp.com/
 * This website will work without you having to add any information or downloading anything
 
 #### Resources 
