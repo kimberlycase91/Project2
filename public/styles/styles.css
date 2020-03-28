@@ -2,15 +2,25 @@
   line-height: 2.5;
 }
 
-#gameImage {
+.reviewCards{
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 15px;
+}
+
+
+#gameImageUrl {
   position: relative;
   float: left;
+  max-height: 150px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .jumbotron {
   padding-bottom: -20px;
+  margin-top: 60px;
 }
 
 .mushRate {

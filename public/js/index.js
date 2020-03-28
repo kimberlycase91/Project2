@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   // Get references to page elements
   var author = $("#author");
   var reviewText = $("#reviewText");
@@ -10,6 +10,31 @@ $(document).ready(function () {
   var gameInfo = {};
   var gameDataId;
 
+<<<<<<< HEAD
+  // var handleFormSubmit = function (event) {
+  //   event.preventDefault();
+  //   console.log("Work plz?");
+  //   var gameInfo = {
+  //     author: author.val().trim(),
+  //     game: 2454,
+  //     text: reviewText.val().trim(),
+  //     rating: rating.val()
+  //   };
+
+  //   if (!(author && reviewText && rating)) {
+  //     alert("You must enter an example text and description!");
+  //     return;
+  //   }
+  //   console.log(gameInfo);
+  //   API.postReview(gameInfo).then(function () {
+  //     refreshReviews();
+  //   });
+  //   console.log(gameInfo);
+  //   author.val("");
+  //   reviewText.val("");
+  //   rating.val("");
+  // };
+=======
   var handleFormSubmit = function (event) {
     event.preventDefault();
     console.log("Work plz?");
@@ -34,8 +59,9 @@ $(document).ready(function () {
     reviewText.val("");
     rating.val("default");
   };
+>>>>>>> fd84d2c4e4be8d5ff6eea514aae260aacb2258d4
 
-  submitBtn.on("click", handleFormSubmit);
+  // submitBtn.on("click", handleFormSubmit);
   // $deleteBtn.on("click", "button.delete", handleDeleteBtnClick);
 
   // The API object contains methods for each kind of request we'll make
@@ -133,7 +159,7 @@ $(document).ready(function () {
       "method": "GET",
     };
     console.log(API_URL);
-    $.ajax(settings).done(function(response) {
+    $.ajax(settings).done(function (response) {
       console.log(response);
       console.log(response.name);
       var newResult = $("<div>");
@@ -151,21 +177,80 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", "#apiNum", function(){
-    // event.preventDefault();
-    var gameSearch = $(this).data("id");
-    gameDataId = gameSearch;
-    console.log(gameSearch);
-    var API_URL = "https://api.rawg.io/api/games/" + gameSearch;
-    console.log(API_URL);
-    // var settings = {
-    //   "async": true,
-    //   "crossDomain": true,
-    //   "url": API_URL,
-    //   "method": "GET",
-    // };
-    // $.ajax(settings).done(function (response) {
+  var clickSearch = [];
+  var counter = 0;
 
-    // });
-  })
+  var loadReview = function(){
+    $("#reviewCards").empty();
+
+    $.get("/api/review/" + clickSearch[counter - 1], function(data){
+      console.log(data);
+      for (var i = 0; i < data.length; i++){
+        var newResult = $("<div>");
+        newResult.attr("class", "reviewCards");
+        var gameName = $("<h6>");
+        gameName.html("<strong>Author:</strong> " + data[i].author + " <span><strong>Rating:</strong> " + data[i].rating + "</span><hr>");
+        gameName.attr("class", "reviewAuthor");
+        newResult.append(gameName);
+        var gameDescription = $("<p>");
+        gameDescription.append(data[i].text);
+        newResult.append(gameDescription);
+        $("#reviewCards").append(newResult);
+      }
+    });
+  };
+
+  $(document).on("click", "#apiNum", function() {
+    event.preventDefault();
+    counter++;
+    var ewanMcGregor = $(this).data("id");
+    console.log(ewanMcGregor);
+    clickSearch.push(ewanMcGregor);
+    console.log(clickSearch);
+    var API_URL = "https://api.rawg.io/api/games/" + clickSearch[counter - 1];
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": API_URL,
+      "method": "GET",
+    };
+    console.log(API_URL);
+    $.ajax(settings).done(function(response) {
+      $("#gameTitle").empty();
+      $("#gameSummary").empty();
+      $("#gameImage").empty();
+      $("#gameImage").html("<img src='" + response.background_image +"' alt='game image' id='gameImageUrl'>")
+      $("#gameTitle").text(response.name);
+      $("#gameSummary").html(response.description);
+    });
+
+    loadReview();
+  });
+
+  var handleFormSubmit = function(event) {
+    event.preventDefault();
+    console.log(clickSearch);
+    console.log("Work plz?");
+    var gameInfo = {
+      author: author.val().trim(),
+      game: parseInt(clickSearch[counter - 1]),
+      text: reviewText.val().trim(),
+      rating: rating.val()
+    };
+
+    if (!(author && reviewText && rating)) {
+      alert("You must enter an example text and description!");
+      return;
+    }
+    console.log(gameInfo);
+    API.postReview(gameInfo).then(function () {
+      loadReview();
+    });
+    console.log(gameInfo);
+    author.val("");
+    reviewText.val("");
+    rating.val("");
+  };
+
+  submitBtn.on("click", handleFormSubmit);
 });
