@@ -32,8 +32,8 @@ Api Key : https://api.rawg.io/api/games/
 
 __Project Members GitHub's__
 
-Kimberly Case: https://github.com/kimberlycase91
-Caleb Mattson: https://github.com/Caleb-Mattson
-Blake Mangen:  https://github.com/Mangenese
-Dylan Herland: https://github.com/dherland
+* Kimberly Case: https://github.com/kimberlycase91
+* Caleb Mattson: https://github.com/Caleb-Mattson
+* Blake Mangen:  https://github.com/Mangenese
+* Dylan Herland: https://github.com/dherland
 
