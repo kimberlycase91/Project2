@@ -29,3 +29,36 @@
   border-radius: 8px;
   padding: 20px;
 }
+
+#webSynopsis {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 65px;
+}
+
+.nav-extended {
+  background: rgb(224, 152, 37);
+
+}
+
+nav .brand-logo.center {
+  color: brown;
+}
+
+.tabs.tabs-transparent .tab a {
+  color: brown;
+}
+
+#gameNewsDiv {
+  margin-top: 65px;
+  margin-left: 20px;
+  max-width: 90%;
+}
+
+body {
+  background: rgb(255, 223, 171)
+}
+
+.form-control>placeholder {
+  color: black;
+}
